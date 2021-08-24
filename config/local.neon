@@ -1,0 +1,8 @@
+database:
+	dsn: 'mysql:host=localhost;dbname=er'
+	user: saurian
+	password: '789'
+	options:
+		lazy: yes
+
+parameters:

@@ -1,0 +1,18 @@
+{default $projectType = null}
+<h1 n:block=title>{if $projectType}Úprava typu projektu `{$projectType->name}`{else}Nový typ projektu{/if}</h1>
+
+{block content}
+<div class="well">
+    <h1 n:if="$projectType">Editace typu projektu id:`{$projectType->id}`</h1>
+    <h1 n:if="!$projectType">Založení nového typu projektu</h1>
+
+    <div class="panel panel-info">
+        <div class="panel-title"></div>
+        <div class="panel-body">
+            {control descriptionForm}
+        </div>
+        <div class="panel-footer text-right">
+            <a n:href="default" class="btn btn-md btn-info">&larr; zpět na projekty</a>
+        </div>
+    </div>
+</div>

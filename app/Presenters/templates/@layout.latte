@@ -1,0 +1,45 @@
+{**
+ * @param string   $basePath web base path
+ * @param array    $flashes  flash messages
+ *}
+
+{import 'components/form.latte'}
+
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+	<meta charset="utf-8">
+
+	<title>{ifset title}{include title|stripHtml} | {/ifset}ER</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta content="cs" http-equiv="Content-language">
+	<meta name="description" content="Správa projektů">
+	<meta name="keywords" content="Nette">
+	<meta content="Pavel Paulík" name="author">
+	<link rel="shortcut icon" href="{$basePath}/favicon.ico">
+
+	<link rel="stylesheet" href="{$basePath}/assets/bootstrap/bootstrap.css">
+	<link rel="stylesheet" href="{$basePath}/css/style.css?v=1">
+
+	<script src="{$basePath}/assets/jQuery/jquery.min.js"></script>
+	<script src="{$basePath}/assets/bootstrap/bootstrap.min.js"></script>
+	{block head}{/block}
+</head>
+
+<body>
+<div class=container>
+	{snippet main}
+		<div n:foreach="$flashes as $flash" n:class="alert, 'alert-' . $flash->type">{$flash->message}</div>
+
+		{include content}
+	{/snippet}
+</div>
+
+{block scripts}
+	<script src="{$basePath}/assets/nette.ajax.js/nette.ajax.js"></script>
+	<script src="{$basePath}/assets/live-form-validation/live-form-validation.js"></script>
+	<script src="{$basePath}/js/main.js"></script>
+{/block}
+</body>
+</html>

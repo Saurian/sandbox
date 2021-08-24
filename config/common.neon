@@ -1,0 +1,38 @@
+#
+# WARNING: it is CRITICAL that this file & directory are NOT accessible directly via a web browser!
+# https://nette.org/security-warning
+#
+parameters:
+
+
+application:
+	errorPresenter: Error
+	mapping:
+		*: App\*Module\Presenters\*Presenter
+
+
+session:
+	expiration: 14 days
+
+
+database:
+	dsn: 'mysql:host=127.0.0.1;dbname=er'
+	user:
+	password:
+	options:
+		lazy: yes
+
+
+services:
+	- App\Model\Manager\UserManager
+	- App\Model\Repository\EquationRepository
+	- App\Model\Repository\DescriptionRepository
+	- App\Forms\FormFactory
+	- App\Forms\SignInFormFactory
+	- App\Forms\SignUpFormFactory
+	- App\Forms\EquationFormFactory
+	- App\Forms\DescriptionFormFactory
+	- App\Controls\EquationGridControlFactory
+	- App\Controls\DescriptionGridControlFactory
+	- App\Router\RouterFactory::createRouter
+	- App\Security\AuthorizatorFactory::create

@@ -1,0 +1,7 @@
+app/config/local.neon
+node_modules
+backupgit
+vendor
+.github
+.idea
+composer.lock

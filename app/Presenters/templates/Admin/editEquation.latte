@@ -1,0 +1,21 @@
+{default $project = null}
+<h1 n:block=title>{if $project}Úprava projektu `{$project->name}`{else}Nový projekt{/if}</h1>
+
+{block content}
+<div class="well">
+    <h1 n:if="$project">Úprava projektu id:`{$project->id}`</h1>
+    <h1 n:if="!$project">Nový projekt</h1>
+
+    <div class="panel panel-info">
+        <div class="panel-body">
+            <div n:snippet="form">
+                {control equationForm}
+            </div>
+        </div>
+        <div class="panel-title"></div>
+        <div class="panel-footer text-right">
+            <a n:href="default" class="btn btn-md btn-info">&larr; zpět na projekty</a>
+        </div>
+    </div>
+</div>
+
