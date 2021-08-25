@@ -13,8 +13,8 @@ services:
       - redis1
 #      - composer
     external_links:
-#      - database
-      - database_mysql
+      - database
+#      - database_mysql
     expose:
       - 80
       - 443
@@ -38,10 +38,12 @@ services:
       VIRTUAL_NETWORK: nginx-proxy
       LETSENCRYPT_HOST: local.cz
       LETSENCRYPT_EMAIL: info@local.cz
-      MYSQL_HOST: database_mysql
-      MYSQL_ROOT_PASSWORD: b4RO2OT
-      MYSQL_DATABASE: er_admin
-      MYSQL_USER: eradmin
+#      MYSQL_HOST: database_mysql
+      MYSQL_HOST: database
+#      MYSQL_ROOT_PASSWORD: b4RO2OT
+      MYSQL_ROOT_PASSWORD: b4RO2OT!}e
+      MYSQL_DATABASE: equation
+      MYSQL_USER: equation
       MYSQL_PASSWORD: aI#UzlQ49Jw91B
 
 #  composer:

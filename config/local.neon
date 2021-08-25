@@ -1,7 +1,8 @@
 database:
-	dsn: 'mysql:host=localhost;dbname=er'
-	user: saurian
-	password: '789'
+#	dsn: 'mysql:host=localhost;dbname=er'
+	dsn: 'mysql:host=database;dbname=equation'
+	user: equation
+	password: 'aI#UzlQ49Jw91B'
 	options:
 		lazy: yes
 
