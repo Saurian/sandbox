@@ -1,0 +1,90 @@
+version: "3"
+
+services:
+
+  er-admin.cz:
+    container_name: er-admin.cz
+    image: er-admin.cz
+    restart: always
+    build:
+      context: ./.docker/web/
+    links:
+      - mailer
+      - redis1
+#      - composer
+    external_links:
+#      - database
+      - database_mysql
+    expose:
+      - 80
+      - 443
+      - 6379
+
+#    ports:
+#      - "5001:80"
+
+    volumes:
+      - ./:/var/www
+      - ./www:/var/www/html
+      - ./log/apache:/var/log/apache2
+      - ./database/:/docker-entrypoint-initdb.d
+      - ./vendor:/var/www/vendor
+#    depends_on:
+#      - composer
+    hostname:
+      local.cz
+    environment:
+      VIRTUAL_HOST: er-admin.local.cz
+      VIRTUAL_NETWORK: nginx-proxy
+      LETSENCRYPT_HOST: local.cz
+      LETSENCRYPT_EMAIL: info@local.cz
+      MYSQL_HOST: database_mysql
+      MYSQL_ROOT_PASSWORD: b4RO2OT
+      MYSQL_DATABASE: er_admin
+      MYSQL_USER: eradmin
+      MYSQL_PASSWORD: aI#UzlQ49Jw91B
+
+#  composer:
+#    restart: 'no'
+#    image: composer/composer:php7
+##    command: update --no-interaction --quiet
+#    command: update
+##    user: www-data:www-data
+##    user: $USER:www-data
+#    volumes:
+#      - .:/app
+
+#  composer
+#    container_name: composer_installation
+##    image: composer/composer:php5
+#    image: composer
+#    working_dir: /app
+#    volumes:
+#      - ../web:/app
+#    command: composer diagnose
+##    command: composer install --no-interaction --ansi # --ignore-platform-reqs
+#    environment:
+#      - PHP_VERSION=7.0
+
+
+  mailer:
+    image: nicescale/sendmail
+    ports:
+      - "25"
+    environment:
+      MAIL_DOMAIN: local.cz
+      DP_USER: info@local.cz
+      DP_PASS: b4RO2OT!}e
+
+  redis1:
+    image: 'bitnami/redis:latest'
+    ports:
+      - '6380:6379'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+
+
+networks:
+  default:
+    external:
+      name: nginx-proxy
